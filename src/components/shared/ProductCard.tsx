@@ -4,12 +4,12 @@ import Link from "next/link";
 
 function ProductCard({ product }: { product: AppOutput.ProductItem }) {
   return (
-    <div className="bg-white rounded-lg shadow-md p-4 max-w-60">
+    <div className="bg-white rounded-lg shadow-md p-4 md:max-w-60 w-full">
       <Image
         src={product?.image ?? DefaultProductPng}
         alt={product.name}
-        width={200}
-        height={200}
+        width={400}
+        height={400}
         className="rounded-lg mb-4 hover:opacity-80 cursor-pointer hover:scale-110 transition-all"
       />
       <div className="space-y-2">
