@@ -1,8 +1,21 @@
+"use client";
+
 import { getProducts } from "@/actions/product";
 import ProductCard from "@/components/shared/ProductCard";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
-export default async function Home() {
-  const products = await getProducts();
+export default function Home() {
+  // const products = await getProducts();
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      const { data } = await axios.get("/api/product");
+      setProducts(data);
+    };
+    fetchProducts();
+  }, []);
 
   return (
     <main className="min-h-screen max-w-7xl mx-auto px-4 md:px-8">
@@ -12,8 +25,8 @@ export default async function Home() {
 
       <section>
         <ul className="w-full grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-6 md:gap-8 lg:gap-10 my-4">
-          {products?.map((product) => (
-            <ProductCard key={product._id} product={product} />
+          {products?.map((product, idx) => (
+            <ProductCard key={idx} product={product} />
           ))}
         </ul>
       </section>
