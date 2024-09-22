@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Provider } from "@/providers/sessionProvider";
 import GoogleCaptchaProvider from "@/providers/GoogleCaptchaProvider";
 import "./globals.css";
 
@@ -15,11 +14,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <Provider>
-        <GoogleCaptchaProvider>
-          <body className=" bg-gray-50 dark:bg-gray-900">{children}</body>
-        </GoogleCaptchaProvider>
-      </Provider>
+      <GoogleCaptchaProvider>
+        <body className=" bg-gray-50 dark:bg-gray-900">{children}</body>
+      </GoogleCaptchaProvider>
     </html>
   );
 }
